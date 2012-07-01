@@ -21,6 +21,7 @@ public class BlobMan {
 	private static float spawnY;
 	private boolean facingR;
 	private int jumpPower;
+	private static float spawnOffset;
 
 	public BlobMan (int[] phoneNumber) {
 		// phoneNum must be a 7-character String of numbers, a phone number minus the area code
@@ -46,6 +47,7 @@ public class BlobMan {
 		setColors();
 		
 		body.setPosition(spawnX, spawnY);
+		spawnOffset -= 100;
 	}
 	
 	private void createBody() {
