@@ -1,6 +1,7 @@
 package main;
 
 import processing.core.*;
+import processing.net.*;
 import fisica.*;
 
 public class Main extends PApplet {
@@ -26,7 +27,6 @@ public class Main extends PApplet {
 	
 	twilio = new Twilio(this, port);
 	BlobMan.setAppletWorld(applet, world);
-	println("Test");
 	//Test BlobMan
 	BlobMan b = new BlobMan("1234567");
 	}
@@ -36,6 +36,16 @@ public class Main extends PApplet {
 		background(0xaaaaaa);
 		world.step();
 		world.draw();
+		
+		// Get the next available client
+		  Client thisClient = twilio.server.available();
+		  // If the client is not null, and says something, display what it said
+		  if (thisClient !=null) {
+		    String whatClientSaid = thisClient.readString();
+		    if (whatClientSaid != null) {
+		      println(thisClient.ip() + "t" + whatClientSaid);
+		    } 
+		  } 
 	}
 	  public static void main(String args[]) {
 		    PApplet.main(new String[] { "--present", "main.Main" });
