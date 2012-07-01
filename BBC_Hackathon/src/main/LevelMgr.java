@@ -31,47 +31,30 @@ public class LevelMgr {
 		smRStep.setPosition(6.5f*w/10, 7*h/10);
 		world.add(smRStep);
 		
+		FBox rightWall = new FBox(w/5, h/4);
+		rightWall.setPosition(w*4.5f/5, h*19/20 - h/6);
+		rightWall.setGrabbable(false);
+		world.add(rightWall);
+		
+//		FBox leftPlat = new FBox(w/2, h/12);
+//		leftPlat.setPosition(w*2/5, h*3/5);
+//		leftPlat.setGrabbable(false);
+//		leftPlat.setStatic(true);
+//		world.add(leftPlat);
+		
 		goal = new FCircle(100);
 		goal.setFill(255, 240, 0);
-		goal.setPosition(w/2, h/2);
+		goal.setPosition(9*w/10, h*4/7);
 		goal.setGrabbable(false);
 		goal.setStatic(true);
 		world.add(goal);
 		
-		BlobMan.setSpawn(w/10, h*2/3);
+		BlobMan.setSpawn(w/2, h*2/3);
 	}
 	
 	public static void setAppletWorld(PApplet applet, FWorld world){
 		LevelMgr.applet = applet;
 		LevelMgr.world = world;
-	}
-	
-	private void lvl2() {
-		FBox floor = new FBox(w, h/20);
-		floor.setPosition(w/2, h*.975f);
-		floor.setGrabbable(false);
-		floor.setStatic(true);
-		world.add(floor);
-		
-		FBox rightWall = new FBox(w/5, h/2);
-		rightWall.setPosition(w*4.5f/5, h*19/20 - h/4);
-		rightWall.setGrabbable(false);
-		rightWall.setStatic(true);
-		world.add(rightWall);
-		
-		FBox leftPlat = new FBox(w/2, h/7);
-		leftPlat.setPosition(w/4, h*2/3);
-		leftPlat.setGrabbable(false);
-		leftPlat.setStatic(true);
-		world.add(leftPlat);
-		
-
-		
-		FBox goal = new FBox(w/10, h/10);
-		goal.setPosition(w/4, h/5);
-		goal.setFill(255, 255, 0);
-		goal.setStatic(true);
-		world.add(goal);
 	}
 	
 	public static FBody getGoal() {

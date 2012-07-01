@@ -184,9 +184,15 @@ public class BlobMan {
 	
 	
 	private void checkJump() {
-//		if (jumpPower > 0) {
-//			body.setVelocity
-//		}
+		float vx;
+		if (jumpPower > 0) {
+			float vxx = body.getVelocityX();
+			float vyy = body.getVelocityY();
+			if (facingR == true) vx = w/10;
+			else vx = -w/10;
+			body.adjustVelocity(w/10 - vxx, h*3/8 - vyy);
+			jumpPower --;
+		}
 	}
 	
 	public void jump() {
