@@ -17,6 +17,10 @@ public class BlobMan {
 	private float h;
 	private boolean isCircleHat;
 	private int[] phoneNumber;
+	private static float spawnX;
+	private static float spawnY;
+	private boolean facingR;
+	private int jumpPower;
 
 	public BlobMan (int[] phoneNumber) {
 		// phoneNum must be a 7-character String of numbers, a phone number minus the area code
@@ -34,11 +38,14 @@ public class BlobMan {
 		this.phoneNumber = phoneNumber;
 		w = applet.width;
 		h = applet.height;
+		jumpPower = 0;
 		
 		createBody();
 		createHead(phoneNumber[3]);
 		createArms();
 		setColors();
+		
+		body.setPosition(spawnX, spawnY);
 	}
 	
 	private void createBody() {
@@ -166,11 +173,43 @@ public class BlobMan {
 	}
 	
 	public void update() {
+		checkJump();
+		
 		head.setPosition(body.getX(), body.getY() - 60);
 		leftArm.setPosition(body.getX() - 48, body.getY()-10);
 		rightArm.setPosition(body.getX() + 48, body.getY() - 10);
 		if (isCircleHat == true) hat.setPosition(head.getX(), head.getY() - 35);
 		else hat.setPosition(head.getX(), head.getY() - 20);
+	}
+	
+	
+	private void checkJump() {
+//		if (jumpPower > 0) {
+//			body.setVelocity
+//		}
+	}
+	
+	public void jump() {
+		jumpPower = 10;
+	}
+	
+	public void faceR() {
+		facingR = true;
+		head.setRotation(0);
+	}
+	
+	public void faceL() {
+		facingR = false;
+		head.setRotation(3.1415f);
+	}
+	
+	public static void setSpawn(float x, float y) {
+		spawnX = x;
+		spawnY = y;
+	}
+	
+	public boolean checkWin() {
+		return false;
 	}
 	
 	
