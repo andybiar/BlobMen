@@ -19,7 +19,7 @@ public class BlobMan {
 
 	public BlobMan (String phoneNum) {
 		// phoneNum must be a 7-character String of numbers, a phone number minus the area code
-		// call setApplet before you instantiate this class
+		// call setAppletWorld before you instantiate this class
 		
 		/* MAP THE PHONE NUMBER TO CHARACTER ATTRIBUTES
 		 * DIGIT_INDEX		ATTRIBUTE
@@ -31,20 +31,55 @@ public class BlobMan {
 		 */
 		
 		createBody();
+		createHead("8"); //phoneNum.charAt(3)
 	}
 	
-	public void createBody() {
+	private void createBody() {
 		body = new FBlob();
-		body.setAsCircle(50);
-		body.setPosition(applet.width/2, applet.height/2);
+		body.setAsCircle(applet.width/2, applet.height/2, 70);
 		
 		world.add(body);
+	}
+	
+	private void createHeadHelp(int code) {
+		switch (code) {
+		case 3: // Square head, circle hat
+			head = new FBox(40, 40);
+
+			break;
+		case 2 : // Round head, triangle hat
+			
+			break;
+		case 1 : // Square head, triangle hat
+			
+			break;
+		case 0 : // Round head, round hat
+			
+			break;
+		}	
 		
+
+		head.setPosition(applet.width/2, applet.height/2 - 35);
+		world.add(head);
+
+	}
+	
+	private void createHead(String headCode) {
+		if (headCode.compareTo("8") >= 0) createHeadHelp(3);
+		
+		// Determine what numerical range the digit falls in and call createHeadHelp
+//		if (hash >= 8) createHeadHelp(3);
+//		else if (hash >= 5) createHeadHelp(2);
+//		else if (hash >= 2) createHeadHelp(1);
+//		else createHeadHelp(0);
 	}
 	
 	public static void setAppletWorld(PApplet applet, FWorld world) {
 		BlobMan.applet = applet;
 		BlobMan.world = world;
+	}
+	
+	public void update() {
 	}
 	
 	
