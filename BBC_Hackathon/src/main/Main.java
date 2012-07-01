@@ -51,7 +51,7 @@ public class Main extends PApplet {
 	
 	@Override
 	public void draw(){
-		background(0xaaaaaa);
+		background(0x7CB490);
 		for (BlobMan b : players) {
 			b.update();
 		}
@@ -75,7 +75,7 @@ public class Main extends PApplet {
 				String result = twilio.listenNums();
 		    	String[] fromSplit = result.split("From");
 		    	String[] bodySplit = result.split("Body=");
-		    	if(fromSplit.length  > 3){
+		    	if(fromSplit.length  > 4){
 		    		String phoneString = fromSplit[4].substring(8,15);
 		    		//println("Phone #: "+phoneString);
 		    	if(playerNumber<=NUM_PLAYERS){
