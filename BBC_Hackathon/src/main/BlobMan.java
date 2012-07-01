@@ -175,7 +175,8 @@ public class BlobMan {
 	public void update() {
 		checkJump();
 		
-		head.setPosition(body.getX(), body.getY() - 60);
+		if (facingR) head.setPosition(body.getX()+15, body.getY() - 60);
+		else head.setPosition(body.getX() - 15, body.getY() - 60);
 		leftArm.setPosition(body.getX() - 48, body.getY()-10);
 		rightArm.setPosition(body.getX() + 48, body.getY() - 10);
 		if (isCircleHat == true) hat.setPosition(head.getX(), head.getY() - 35);
