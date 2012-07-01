@@ -149,8 +149,6 @@ public class BlobMan {
 	}
 	
 	private void setColors() {
-		System.out.println("color 1: " + phoneNumber[4] + " --> " + colorChart(phoneNumber[4]));
-		System.out.println("color 1: " + phoneNumber[5] + " --> " + colorChart(phoneNumber[5]));
 		int[] hatRGB = colorChart(phoneNumber[4]);
 		int[] headRGB = colorChart(phoneNumber[5]);
 		int[] bodyRGB = colorChart(phoneNumber[6]);
