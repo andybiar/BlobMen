@@ -30,9 +30,10 @@ public class Main extends PApplet {
 	world = new FWorld();
 	world.setEdges();
 	world.remove(world.top);
-	world.remove(world.left);
-	world.remove(world.right);
-	world.setGravity(0, 10);
+	world.setGravity(0, 100);
+	
+	LevelMgr.setAppletWorld(applet, world);
+	LevelMgr lvlMgr = new LevelMgr();
 	
 	twilio = new Twilio(this, port);
 	BlobMan.setAppletWorld(applet, world);
