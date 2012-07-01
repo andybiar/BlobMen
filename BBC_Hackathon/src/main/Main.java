@@ -1,24 +1,21 @@
 package main;
 
 import processing.core.*;
-import fullscreen.*;
 import fisica.*;
 
 public class Main extends PApplet {
+	
 	public static final long serialVersionUID = 1L;
 	private final PApplet applet = this;
 	private FWorld world;
 	private Twilio twilio;
 	private int port = 5027;
-	private FullScreen fs;
 
 	@Override
 	public void setup(){
 	size(screenWidth,screenHeight);
 	smooth();
 	frameRate(60);
-	fs = new FullScreen(this,1);
-	fs.enter();
 	Fisica.init(this);
 	world = new FWorld();
 	world.setEdges();
@@ -40,4 +37,7 @@ public class Main extends PApplet {
 		world.step();
 		world.draw();
 	}
+	  public static void main(String args[]) {
+		    PApplet.main(new String[] { "--present", "main.Main" });
+		  }
 }
