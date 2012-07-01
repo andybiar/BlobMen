@@ -7,6 +7,10 @@ import fisica.*;
 
 public class BlobMan {
 	private static PApplet applet;
+	private static FWorld world;
+	private float sideMargin = 35;
+	private float bottomMargin = 50;
+	private float topMargin = 20;
 	private FBlob body;
 	private FBody leftArm;
 	private FBody rightArm;
@@ -31,14 +35,15 @@ public class BlobMan {
 	
 	public void createBody() {
 		body = new FBlob();
-		//body.vertex(applet.width/2, 0);
-		body.vertex(0, 0);
-		//body.vertex(0, applet.height);
+		body.setAsCircle(50);
+		
+		world.add(body);
 		
 	}
 	
-	public static void setApplet(PApplet applet) {
+	public static void setAppletWorld(PApplet applet, FWorld world) {
 		BlobMan.applet = applet;
+		BlobMan.world = world;
 	}
 	
 	
