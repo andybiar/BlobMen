@@ -5,6 +5,13 @@ import processing.net.*;
 import fisica.*;
 import java.util.*;
 
+import org.apache.http.*;
+import org.apache.http.message.BasicHttpRequest;
+import org.apache.http.message.BasicLineParser;
+import org.apache.http.message.LineParser;
+import org.apache.http.message.ParserCursor;
+import org.apache.http.util.CharArrayBuffer;
+
 public class Main extends PApplet {
 	
 	public static final long serialVersionUID = 1L;
@@ -32,7 +39,8 @@ public class Main extends PApplet {
 	
 	//Test BlobMan
 	players = new ArrayList<BlobMan>();
-	BlobMan b = new BlobMan("1234567");
+	int[] num = {1,2,3,4,5,6,7};
+	BlobMan b = new BlobMan(num);
 	players.add(b);
 	}
 	
@@ -51,11 +59,11 @@ public class Main extends PApplet {
 		  if (thisClient !=null) {
 		    String whatClientSaid = thisClient.readString();
 		    if (whatClientSaid != null) {
-		      println(thisClient.ip() + "t" + whatClientSaid);
+		    	String[] split = whatClientSaid.split("From");
+		    	println("Test:"+split[1].substring(0, 9));
 		    } 
 		  } 
 	}
-	  public static void main(String args[]) {
-		    PApplet.main(new String[] { "--present", "main.Main" });
-		  }
+	public static void main(String args[]) {
+	   PApplet.main(new String[] { "--present", "main.Main" });	  }
 }
