@@ -16,6 +16,9 @@ public class Main extends PApplet {
 	world.setEdges();
 	
 	BlobMan.setAppletWorld(applet, world);
+	
+	//Test BlobMan
+	BlobMan b = new BlobMan("1234567");
 	}
 	
 	@Override
