@@ -15,7 +15,7 @@ public class Main extends PApplet {
 	Fisica.init(this);
 	world.setEdges();
 	
-	BlobMan.setApplet(this);
+	BlobMan.setAppletWorld(applet, world);
 	}
 	
 	@Override
