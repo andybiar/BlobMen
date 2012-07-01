@@ -36,7 +36,8 @@ public class BlobMan {
 		h = applet.height;
 		
 		createBody();
-		createHead(3);
+		createHead(phoneNumber[3]);
+		setColors();
 	}
 	
 	private void createBody() {
@@ -97,9 +98,9 @@ public class BlobMan {
 	
 	private void createHead(int headCode) {
 		// Determine what numerical range the digit falls in and call createHeadHelp
-		if (headCode.compareTo("8") >= 0) createHeadHelp(3);
-		else if (headCode.compareTo("5") >= 0) createHeadHelp(2);
-		else if (headCode.compareTo("2") >= 0) createHeadHelp(1);
+		if (headCode >= 8) createHeadHelp(3);
+		else if (headCode >= 5) createHeadHelp(2);
+		else if (headCode >= 2) createHeadHelp(1);
 		else createHeadHelp(0);
 	}
 	
@@ -140,8 +141,10 @@ public class BlobMan {
 		return color;
 	}
 	
-	private void setColors(String colorCode) {
-		if (colorCode.compareTo("0") ==
+	private void setColors() {
+		hat.setFill(colorChart(phoneNumber[4]));
+		head.setFill(colorChart(phoneNumber[5]));
+		body.setFill(colorChart(phoneNumber[6]));
 	}
 	
 	public static void setAppletWorld(PApplet applet, FWorld world) {
