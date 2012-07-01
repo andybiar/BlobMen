@@ -9,8 +9,8 @@ public class BlobMan {
 	private static PApplet applet;
 	private static FWorld world;
 	private FCircle body;
-	// TIME CRUNCH... private FBody leftArm;
-	// TIME CRUNCH... private FBody rightArm;
+	private FBody leftArm;
+	private FBody rightArm;
 	private FBody head;
 	private FBody hat;
 	private float w;
@@ -37,6 +37,7 @@ public class BlobMan {
 		
 		createBody();
 		createHead(phoneNumber[3]);
+		createArms();
 		setColors();
 	}
 	
@@ -104,47 +105,59 @@ public class BlobMan {
 		else createHeadHelp(0);
 	}
 	
-	private int colorChart(int code) {
-		int color = 0x000000;
+	private int[] colorChart(int code) {
+		int[] color = new int[3];
 		switch (code) {
 		case 0: 
-			color = 0xa1a4b2;
-			break;
+			color[0] = 242; color[1] = 164; color[2] = 190; break; //pink
 		case 1:
-			color = 0x51a3a1;
-			break;
+			color[0] = 255; color[1] = 241; color[2] = 233; break; //light beige
 		case 2:
-			color = 0x329ad3;
-			break;
+			color[0] = 196; color[1] = 62; color[2] = 87; break; // red
 		case 3:
-			color = 0x06b558;
-			break;
+			color[0] = 31; color[1] = 59; color[2] = 107; break; // blue
 		case 4:
-			color = 0xb20e01;
-			break;
+			color[0] = 2; color[1] = 13; color[2] = 43; break; // dark purple
 		case 5:
-			color = 0xeedbd1;
-			break;
+			color[0] = 166; color[1] = 120; color[2] = 56; break; // brown
 		case 6:
-			color = 0xd9afc7;
-			break;
+			color[0] = 148; color[1] = 148; color[2] = 148; break; // gray
 		case 7:
-			color = 0x182474;
-			break;
+			color[0] = 239; color[1] = 157; color[2] = 51; break; // orange
 		case 8:
-			color = 0xad988f;
-			break;
+			color[0] = 147; color[2] = 198; color[3] = 234; break; // light blue
 		case 9:
-			color = 0xead337;
-			break;
+			color[0] = 89; color[1] = 162; color[3] = 46; break; // green
 		}
 		return color;
 	}
 	
+	private void createArms() {
+		leftArm = new FBox(45, 15);
+		leftArm.setRotation(-3.1415f/3f);
+		leftArm.setRotatable(false);
+		leftArm.setGrabbable(false);
+		leftArm.setPosition(body.getX() - 48, body.getY()-10);
+		world.add(leftArm);
+		
+		rightArm = new FBox(45, 15);
+		rightArm.setRotation(3.1415f/3f);
+		rightArm.setRotatable(false);
+		rightArm.setGrabbable(false);
+		rightArm.setPosition(body.getX() + 48, body.getY() - 10);
+		world.add(rightArm);
+	}
+	
 	private void setColors() {
-		hat.setFill(colorChart(phoneNumber[4]));
-		head.setFill(colorChart(phoneNumber[5]));
-		body.setFill(colorChart(phoneNumber[6]));
+		System.out.println("color 1: " + phoneNumber[4] + " --> " + colorChart(phoneNumber[4]));
+		System.out.println("color 1: " + phoneNumber[5] + " --> " + colorChart(phoneNumber[5]));
+		int[] hatRGB = colorChart(phoneNumber[4]);
+		int[] headRGB = colorChart(phoneNumber[5]);
+		int[] bodyRGB = colorChart(phoneNumber[6]);
+		
+		hat.setFill(hatRGB[0], hatRGB[1], hatRGB[2]);
+		head.setFill(headRGB[0], headRGB[1], headRGB[2]);
+		body.setFill(bodyRGB[0], bodyRGB[1], bodyRGB[2]);
 	}
 	
 	public static void setAppletWorld(PApplet applet, FWorld world) {
@@ -154,6 +167,8 @@ public class BlobMan {
 	
 	public void update() {
 		head.setPosition(body.getX(), body.getY() - 60);
+		leftArm.setPosition(body.getX() - 48, body.getY()-10);
+		rightArm.setPosition(body.getX() + 48, body.getY() - 10);
 		if (isCircleHat == true) hat.setPosition(head.getX(), head.getY() - 35);
 		else hat.setPosition(head.getX(), head.getY() - 20);
 	}
