@@ -15,13 +15,14 @@ import org.apache.http.util.CharArrayBuffer;
 public class Main extends PApplet {
 	
 	public static final long serialVersionUID = 1L;
-	public static final int NUM_PLAYERS = 2;
+	public static final int NUM_PLAYERS = 1; //zero indexed
 	private final PApplet applet = this;
 	private FWorld world;
 	private Twilio twilio;
 	private int port = 5022;
 	private ArrayList<BlobMan> players;
-	private int playerNumber = 1;
+	private int playerNumber = 0;
+	private int[] playerPhoneNumbers;
 	@Override
 	public void setup(){
 	size(screenWidth,screenHeight);
@@ -42,6 +43,7 @@ public class Main extends PApplet {
 	println("Test");
 	//Test BlobMan
 	players = new ArrayList<BlobMan>();
+	playerPhoneNumbers = new int[NUM_PLAYERS+1];
 	int[] num = {1,2,3,4,5,6,7};
 	//BlobMan b = new BlobMan(num);
 	//players.add(b);
@@ -70,15 +72,27 @@ public class Main extends PApplet {
     	}
 		if(nums != null){
 			players.add(new BlobMan(nums));
+			playerPhoneNumbers[playerNumber] = Integer.parseInt(phoneString);
 			playerNumber++;
 		}
     	}
     	else{
     		if(bodySplit!=null){
-    			String Action = bodySplit[0].substring(0,1);
+    			String action = bodySplit[1].substring(0,1).toLowerCase();
+    			if(Integer.parseInt(phoneString) == playerPhoneNumbers[0]){
+    	    		doAction(0, action.charAt(0));}
+    			else if(Integer.parseInt(phoneString) == playerPhoneNumbers[1]){
+    	    		doAction(1, action.charAt(0));}
+    			else{
+    				println("Not A Valid Number");
+    			}
     		}
     	}
 	    }
+	}
+	
+	public void doAction(int playerNum, char action){
+		println("Player "+playerNum+" does "+action+"!");
 	}
 	public static void main(String args[]) {
 	   PApplet.main(new String[] { "--present", "main.Main" });	  }
