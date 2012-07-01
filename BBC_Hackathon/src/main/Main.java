@@ -18,7 +18,7 @@ public class Main extends PApplet {
 	private final PApplet applet = this;
 	private FWorld world;
 	private Twilio twilio;
-	private int port = 5027;
+	private int port = 5022;
 	private ArrayList<BlobMan> players;
 
 	@Override
@@ -37,11 +37,12 @@ public class Main extends PApplet {
 	twilio = new Twilio(this, port);
 	BlobMan.setAppletWorld(applet, world);
 	
+	println("Test");
 	//Test BlobMan
 	players = new ArrayList<BlobMan>();
 	int[] num = {1,2,3,4,5,6,7};
-	BlobMan b = new BlobMan(num);
-	players.add(b);
+	//BlobMan b = new BlobMan(num);
+	//players.add(b);
 	}
 	
 	@Override
@@ -60,8 +61,19 @@ public class Main extends PApplet {
 		    String whatClientSaid = thisClient.readString();
 		    if (whatClientSaid != null) {
 		    	String[] split = whatClientSaid.split("From");
-		    	println("Test:"+split[1].substring(0, 9));
-		    } 
+		    	if(split.length  > 3){
+		    		String phoneString = split[4].substring(8,15);
+		    		println("Phone #: "+phoneString);
+		    	int[] nums = new int[7];
+		    	for(int i = 0; i<phoneString.length(); i++){
+		    		nums[i]=(int)phoneString.charAt(i)-48;
+		    	}
+		    	players.add(new BlobMan(nums));
+		    	//thisClient.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?><Response><Gather timeout=\"10\" finishOnKey=\"*\"><Say>Please enter your pin number and then press star.</Say></Gather></Response>");
+		    	}
+		    	else{println("No Split");}
+		    	
+		    }
 		  } 
 	}
 	public static void main(String args[]) {
