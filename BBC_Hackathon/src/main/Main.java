@@ -14,6 +14,8 @@ public class Main extends PApplet {
 	frameRate(60);
 	Fisica.init(this);
 	world.setEdges();
+	
+	BlobMan.setApplet(this);
 	}
 	
 	@Override
