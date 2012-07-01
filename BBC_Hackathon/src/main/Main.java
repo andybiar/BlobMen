@@ -55,26 +55,10 @@ public class Main extends PApplet {
 		world.draw();
 		
 		// Get the next available client
-		  Client thisClient = twilio.server.available();
-		  // If the client is not null, and says something, display what it said
-		  if (thisClient !=null) {
-		    String whatClientSaid = thisClient.readString();
-		    if (whatClientSaid != null) {
-		    	String[] split = whatClientSaid.split("From");
-		    	if(split.length  > 3){
-		    		String phoneString = split[4].substring(8,15);
-		    		println("Phone #: "+phoneString);
-		    	int[] nums = new int[7];
-		    	for(int i = 0; i<phoneString.length(); i++){
-		    		nums[i]=(int)phoneString.charAt(i)-48;
-		    	}
-		    	players.add(new BlobMan(nums));
-		    	//thisClient.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?><Response><Gather timeout=\"10\" finishOnKey=\"*\"><Say>Please enter your pin number and then press star.</Say></Gather></Response>");
-		    	}
-		    	else{println("No Split");}
-		    	
-		    }
-		  } 
+		int[] nums = twilio.listenNums();
+		if(nums != null){
+			players.add(new BlobMan(nums));
+		}
 	}
 	public static void main(String args[]) {
 	   PApplet.main(new String[] { "--present", "main.Main" });	  }
