@@ -7,5 +7,6 @@
 	<classpathentry kind="lib" path="Processing.app/Contents/Resources/Java/pde.jar"/>
 	<classpathentry kind="lib" path="fisica.jar"/>
 	<classpathentry kind="lib" path="JBox2D-2.0.1-b250-Library.jar"/>
+	<classpathentry kind="lib" path="Processing.app/Contents/Resources/Java/modes/java/libraries/net/library/net.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
