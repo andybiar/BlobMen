@@ -199,7 +199,7 @@ public class BlobMan {
 	}
 	
 	public void jump() {
-		jumpPower = 1;
+		jumpPower = 5;
 	}
 	
 	public void faceR() {

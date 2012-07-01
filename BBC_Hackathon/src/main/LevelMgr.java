@@ -25,20 +25,20 @@ public class LevelMgr {
 		
 		FBox rightStep = new FBox(w/10, h/7);
 		rightStep.setPosition(7.5f*w/10, 7*h/10);
-		rightStep.setDensity(9);
+		rightStep.setDensity(9999);
 		rightStep.setGrabbable(false);
 		world.add(rightStep);
 		
 		FBox smRStep = new FBox(w/10, h/12);
 		smRStep.setPosition(6.5f*w/10, 7*h/10);
 		smRStep.setGrabbable(false);
-		smRStep.setDensity(9);
+		smRStep.setDensity(9999);
 		world.add(smRStep);
 		
 		FBox rightWall = new FBox(w/5, h/4);
 		rightWall.setPosition(w*4.5f/5, h*19/20 - h/6);
 		rightWall.setGrabbable(false);
-		rightWall.setDensity(9);
+		rightWall.setDensity(9999);
 		world.add(rightWall);
 		
 //		FBox leftPlat = new FBox(w/2, h/12);
