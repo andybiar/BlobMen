@@ -125,9 +125,9 @@ public class BlobMan {
 		case 7:
 			color[0] = 239; color[1] = 157; color[2] = 51; break; // orange
 		case 8:
-			color[0] = 147; color[2] = 198; color[3] = 234; break; // light blue
+			color[0] = 147; color[1] = 198; color[2] = 234; break; // light blue
 		case 9:
-			color[0] = 89; color[1] = 162; color[3] = 46; break; // green
+			color[0] = 89; color[1] = 162; color[2] = 46; break; // green
 		}
 		return color;
 	}
