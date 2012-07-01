@@ -156,6 +156,8 @@ public class BlobMan {
 		hat.setFill(hatRGB[0], hatRGB[1], hatRGB[2]);
 		head.setFill(headRGB[0], headRGB[1], headRGB[2]);
 		body.setFill(bodyRGB[0], bodyRGB[1], bodyRGB[2]);
+		leftArm.setFill(headRGB[0], headRGB[1], headRGB[2]);
+		rightArm.setFill(headRGB[0], headRGB[1], headRGB[2]);
 	}
 	
 	public static void setAppletWorld(PApplet applet, FWorld world) {
