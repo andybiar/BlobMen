@@ -15,12 +15,13 @@ import org.apache.http.util.CharArrayBuffer;
 public class Main extends PApplet {
 	
 	public static final long serialVersionUID = 1L;
+	public static final int NUM_PLAYERS = 2;
 	private final PApplet applet = this;
 	private FWorld world;
 	private Twilio twilio;
 	private int port = 5022;
 	private ArrayList<BlobMan> players;
-
+	private int playerNumber = 1;
 	@Override
 	public void setup(){
 	size(screenWidth,screenHeight);
@@ -56,10 +57,28 @@ public class Main extends PApplet {
 		world.draw();
 		
 		// Get the next available client
-		int[] nums = twilio.listenNums();
+		String result = twilio.listenNums();
+    	String[] fromSplit = result.split("From");
+    	String[] bodySplit = result.split("Body=");
+    	if(fromSplit.length  > 3){
+    		String phoneString = fromSplit[4].substring(8,15);
+    		println("Phone #: "+phoneString);
+    	if(playerNumber<=NUM_PLAYERS){
+    	int[] nums = new int[7];
+    	for(int i = 0; i<phoneString.length(); i++){
+    		nums[i]=(int)phoneString.charAt(i)-48;
+    	}
 		if(nums != null){
 			players.add(new BlobMan(nums));
+			playerNumber++;
 		}
+    	}
+    	else{
+    		if(bodySplit!=null){
+    			String Action = bodySplit[0].substring(0,1);
+    		}
+    	}
+	    }
 	}
 	public static void main(String args[]) {
 	   PApplet.main(new String[] { "--present", "main.Main" });	  }
