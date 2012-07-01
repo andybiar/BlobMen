@@ -36,6 +36,7 @@ public class BlobMan {
 	public void createBody() {
 		body = new FBlob();
 		body.setAsCircle(50);
+		body.setPosition(applet.width/2, applet.height/2);
 		
 		world.add(body);
 		
