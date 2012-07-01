@@ -59,7 +59,16 @@ public class Main extends PApplet {
 		world.draw();
 		doControls();
 		
+		//boolean win = checkWin();
+		
 	}
+	
+//	public boolean checkWin() {
+//		boolean playersWin = true;
+//		for (BlobMan b : players) {
+//			if 
+//		}
+//	}
 	
 	public void doControls(){
 		// Get the next available client
@@ -109,6 +118,7 @@ public class Main extends PApplet {
 		}
 		
 	}
+	
 	public static void main(String args[]) {
 	   PApplet.main(new String[] { "--present", "main.Main" });	  }
 }
