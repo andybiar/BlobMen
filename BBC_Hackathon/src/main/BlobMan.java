@@ -47,7 +47,7 @@ public class BlobMan {
 		setColors();
 		
 		body.setPosition(spawnX, spawnY);
-		spawnOffset -= 100;
+		spawnX-= 200;
 	}
 	
 	private void createBody() {
@@ -199,7 +199,7 @@ public class BlobMan {
 	}
 	
 	public void jump() {
-		jumpPower = 10;
+		jumpPower = 1;
 	}
 	
 	public void faceR() {
