@@ -25,15 +25,20 @@ public class LevelMgr {
 		
 		FBox rightStep = new FBox(w/10, h/7);
 		rightStep.setPosition(7.5f*w/10, 7*h/10);
+		rightStep.setStatic(true);
+		rightStep.setGrabbable(false);
 		world.add(rightStep);
 		
 		FBox smRStep = new FBox(w/10, h/12);
 		smRStep.setPosition(6.5f*w/10, 7*h/10);
+		smRStep.setStatic(true);
+		smRStep.setGrabbable(false);
 		world.add(smRStep);
 		
 		FBox rightWall = new FBox(w/5, h/4);
 		rightWall.setPosition(w*4.5f/5, h*19/20 - h/6);
 		rightWall.setGrabbable(false);
+		rightWall.setStatic(true);
 		world.add(rightWall);
 		
 //		FBox leftPlat = new FBox(w/2, h/12);

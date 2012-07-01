@@ -190,7 +190,7 @@ public class BlobMan {
 			float vyy = body.getVelocityY();
 			if (facingR == true) vx = w/10;
 			else vx = -w/10;
-			body.adjustVelocity(w/10 - vxx, h*3/8 - vyy);
+			body.adjustVelocity(vx - vxx, -h*3/8 + vyy);
 			jumpPower --;
 		}
 	}
