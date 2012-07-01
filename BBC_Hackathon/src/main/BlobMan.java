@@ -177,8 +177,8 @@ public class BlobMan {
 	public void update() {
 		checkJump();
 		
-		if (facingR) head.setPosition(body.getX()+15, body.getY() - 60);
-		else head.setPosition(body.getX() - 15, body.getY() - 60);
+		if (facingR) head.setPosition(body.getX()+10, body.getY() - 60);
+		else head.setPosition(body.getX() - 10, body.getY() - 60);
 		leftArm.setPosition(body.getX() - 48, body.getY()-10);
 		rightArm.setPosition(body.getX() + 48, body.getY() - 10);
 		if (isCircleHat == true) hat.setPosition(head.getX(), head.getY() - 35);
@@ -193,7 +193,7 @@ public class BlobMan {
 			float vyy = body.getVelocityY();
 			if (facingR == true) vx = w/10;
 			else vx = -w/10;
-			body.adjustVelocity(vx - vxx, -h*3/8 + vyy);
+			body.adjustVelocity(vx - vxx, -h/10 + vyy);
 			jumpPower --;
 		}
 	}
