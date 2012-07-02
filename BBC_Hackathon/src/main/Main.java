@@ -16,11 +16,11 @@ import ddf.minim.*;
 public class Main extends PApplet {
 	
 	public static final long serialVersionUID = 1L;
-	public static final int NUM_PLAYERS = 1; //zero indexed
+	public static final int NUM_PLAYERS = 0; //zero indexed
 	private final PApplet applet = this;
 	private FWorld world;
 	private Twilio twilio;
-	private int port = 5022;
+	private int port = 5023;
 	private ArrayList<BlobMan> players;
 	private int playerNumber = 0;
 	private int[] playerPhoneNumbers;
@@ -84,22 +84,25 @@ public class Main extends PApplet {
 				String result = twilio.listenNums();
 		    	String[] fromSplit = result.split("From");
 		    	String[] bodySplit = result.split("Body=");
+		    	String phoneString = null;
 		    	if(fromSplit.length  > 4){
-		    		String phoneString = fromSplit[4].substring(8,15);
+		    		if(fromSplit[4].length()>=15){
+		    		 phoneString= fromSplit[4].substring(8,15);}
 		    		//println("Phone #: "+phoneString);
-		    	if(playerNumber<=NUM_PLAYERS){
+		    	if(playerNumber<=NUM_PLAYERS && phoneString != null){
 		    	int[] nums = new int[7];
 		    	for(int i = 0; i<phoneString.length(); i++){
 		    		nums[i]=(int)phoneString.charAt(i)-48;
 		    	}
 				if(nums != null){
 					players.add(new BlobMan(nums));
+					println("Player "+playerNumber+" joined: "+phoneString);
 					playerPhoneNumbers[playerNumber] = Integer.parseInt(phoneString);
 					playerNumber++;
 				}
 		    	}
 		    	else{
-		    		if(bodySplit!=null){
+		    		if(bodySplit!=null && phoneString!=null){
 		    			String action = bodySplit[1].substring(0,1).toLowerCase();
 		    			if(Integer.parseInt(phoneString) == playerPhoneNumbers[0]){
 		    	    		doAction(0, action.charAt(0));}
