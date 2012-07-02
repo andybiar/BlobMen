@@ -11,6 +11,7 @@ import org.apache.http.message.BasicLineParser;
 import org.apache.http.message.LineParser;
 import org.apache.http.message.ParserCursor;
 import org.apache.http.util.CharArrayBuffer;
+import ddf.minim.*;
 
 public class Main extends PApplet {
 	
@@ -23,6 +24,10 @@ public class Main extends PApplet {
 	private ArrayList<BlobMan> players;
 	private int playerNumber = 0;
 	private int[] playerPhoneNumbers;
+	Minim minim;
+	AudioSnippet jump;
+	AudioSnippet turn;
+	
 	@Override
 	public void setup(){
 	size(screenWidth,screenHeight);
@@ -33,6 +38,10 @@ public class Main extends PApplet {
 	world.setEdges();
 	world.remove(world.top);
 	world.setGravity(0, 100);
+	
+	minim = new Minim(this);
+	turn = minim.loadSnippet("turn.wav");
+	jump = minim.loadSnippet("jump.wav");
 	
 	LevelMgr.setAppletWorld(applet, world);
 	LevelMgr lvlMgr = new LevelMgr();
@@ -109,15 +118,33 @@ public class Main extends PApplet {
 		println("Player "+playerNum+" does "+action+"!");
 		if(action=='j'){
 			players.get(playerNum).jump();
+			jump.rewind();
+			jump.play();
 		}
 		else if(action=='r'){
 			players.get(playerNum).faceR();
+			turn.rewind();
+			turn.play();
 		}
 		else if(action=='l'){
 			players.get(playerNum).faceL();
+			turn.rewind();
+			turn.play();
 		}
 		
 	}
+	
+	public void stop()
+	{
+	  // always close Minim audio classes when you are done with them
+	  turn.close();
+	  jump.close();
+	  // always stop Minim before exiting
+	  minim.stop();
+	  
+	  super.stop();
+	}
+
 	
 	public static void main(String args[]) {
 	   PApplet.main(new String[] { "--present", "main.Main" });	  }
